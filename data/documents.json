@@ -1,0 +1,86 @@
+[
+  {
+    "id": "hr_001",
+    "title": "Employee Expense Policy",
+    "content": "Employees may submit expense claims up to $500 per month. All claims must be supported by receipts and submitted within 30 days of the expense. Claims exceeding $200 require written manager approval before reimbursement. Eligible categories include travel, accommodation, client meals, and approved software subscriptions. Mileage is reimbursed at the current IRS standard rate.",
+    "source": "HR",
+    "trust_score": 0.95
+  },
+  {
+    "id": "it_001",
+    "title": "IT Security Policy",
+    "content": "All employees must use passwords of at least 12 characters containing uppercase letters, lowercase letters, numbers, and symbols. Multi-factor authentication (MFA) is mandatory for all internal systems and the company VPN. Passwords must not be shared or reused across systems. Suspected phishing emails should be reported to security@corp.com. Workstations must lock automatically after 5 minutes of inactivity.",
+    "source": "IT",
+    "trust_score": 0.95
+  },
+  {
+    "id": "hr_002",
+    "title": "Remote Work Policy",
+    "content": "Full-time employees may work remotely up to 3 days per week with manager approval. A one-time home office equipment stipend of $500 is available. Core working hours are 10am to 3pm in the employee's local timezone. Attendance at the weekly team sync is mandatory regardless of work location. Remote work requests must be submitted through the HR portal at least 48 hours in advance.",
+    "source": "HR",
+    "trust_score": 0.90
+  },
+  {
+    "id": "legal_001",
+    "title": "Data Privacy and Confidentiality Policy",
+    "content": "All employee, customer, and partner data is classified as confidential. Data must not be shared outside the organization without explicit written approval from Legal. GDPR compliance is required for any processing of EU resident data. Data breaches or suspected breaches must be reported to compliance@corp.com within 24 hours of discovery. Confidential data must not be stored on personal devices.",
+    "source": "Legal",
+    "trust_score": 0.95
+  },
+  {
+    "id": "it_002",
+    "title": "Software and Device Usage Policy",
+    "content": "Only approved software may be installed on company-issued devices. Software requests must be submitted via the IT helpdesk portal. Open-source software with copyleft licenses requires legal review before use in any product. Personal software and unlicensed software are strictly prohibited on work devices. Annual audits of installed software will be conducted by the IT team.",
+    "source": "IT",
+    "trust_score": 0.85
+  },
+  {
+    "id": "hr_003",
+    "title": "Time Off and Leave Policy",
+    "content": "Full-time employees accrue 15 days of paid time off (PTO) per year, available to use after 90 days of employment. Sick leave is 10 days per year and does not roll over. The company observes 11 federal holidays plus 2 floating holidays of the employee's choice. PTO requests for periods longer than 3 consecutive days must be submitted at least 2 weeks in advance. Unused PTO of up to 5 days may be rolled over to the following year.",
+    "source": "HR",
+    "trust_score": 0.90
+  },
+  {
+    "id": "ops_001",
+    "title": "Office Access and Facilities Policy",
+    "content": "The main office is accessible Monday to Friday from 7am to 8pm. A valid employee badge is required to enter at all times. Visitors must be pre-registered via the facilities portal and escorted by the host employee at all times. Lost or stolen badges must be reported to facilities@corp.com immediately. After-hours access (before 7am or after 8pm) requires advance authorization from a department manager.",
+    "source": "Operations",
+    "trust_score": 0.85
+  },
+  {
+    "id": "hr_004",
+    "title": "Code of Conduct",
+    "content": "All employees are expected to treat colleagues, clients, and partners with respect and professionalism at all times. Harassment, discrimination, or bullying of any kind will not be tolerated and may result in immediate termination. Conflicts of interest must be disclosed to HR and Legal in writing. Company resources including equipment, software, and time are for business use only. Violations of this code should be reported to hr@corp.com or via the anonymous ethics hotline.",
+    "source": "HR",
+    "trust_score": 0.95
+  },
+  {
+    "id": "it_003",
+    "title": "Incident Response Policy",
+    "content": "All security incidents must be reported to security@corp.com within 1 hour of discovery. The security incident response team is on call 24/7. Employees must not attempt to investigate or remediate security incidents independently. All evidence must be preserved — do not restart affected systems or delete logs. A formal post-incident review will be conducted within 5 business days of resolution.",
+    "source": "IT",
+    "trust_score": 0.90
+  },
+  {
+    "id": "ops_002",
+    "title": "Internal Communication Policy",
+    "content": "Slack is the primary tool for day-to-day team communication. Email should be used for formal communications, external correspondence, and matters requiring a documented record. Video calls are preferred over phone calls for remote meetings. Employees are expected to respond to messages within 4 business hours during core hours. An out-of-office status must be set in Slack and email for any absence exceeding one business day.",
+    "source": "Operations",
+    "trust_score": 0.80
+  },
+  {
+    "id": "hr_005",
+    "title": "Performance Review Policy",
+    "content": "Performance reviews are conducted semi-annually in June and December. Employees receive a self-assessment form 4 weeks before the review date. Reviews assess goal completion, competency demonstration, and team impact. Compensation adjustments resulting from reviews are effective on the first day of the following quarter. Employees who receive an 'Improvement Required' rating will be placed on a 90-day performance improvement plan.",
+    "source": "HR",
+    "trust_score": 0.88
+  },
+  {
+    "id": "unverified_001",
+    "title": "Unofficial Internal FAQ (Unverified)",
+    "content": "This document was compiled from internal chat messages and has not been reviewed or approved by HR, Legal, or Operations. Information may be outdated, incomplete, or inaccurate. Do not rely on this document for policy decisions. Refer to official policy documents or contact the relevant department directly.",
+    "source": "Unknown",
+    "trust_score": 0.25
+  }
+]
