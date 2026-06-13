@@ -36,14 +36,14 @@ Built with FastAPI, sentence-transformers, and SQLite. No external vector DB or 
 │  ⑤ Prompt Assembly                              │
 │     System prompt + context + user query        │
 │                      │                          │
-│  ⑥ LLM Interface                               │
+│  ⑥ LLM Interface                                │
 │     OpenAI (if key set) or deterministic mock   │
 │                      │                          │
-│  ⑦ Output Filter                               │
+│  ⑦ Output Filter                                │
 │     Redact PII, API keys, credential patterns   │
 │     Block on context leakage phrases            │
 │                      │                          │
-│  ⑧ Audit Logger                                │
+│  ⑧ Audit Logger                                 │
 │     Every request logged to SQLite              │
 │     with injection score + attack flag          │
 └─────────────────────────────────────────────────┘
