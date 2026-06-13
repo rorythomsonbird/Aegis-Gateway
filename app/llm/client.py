@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from app.config import OPENAI_API_KEY, OPENAI_MODEL
+import os
+
+from app.config import OPENAI_MODEL
 
 
-# ── Mock responses keyed by topic ─────────────────────────────────────────────
-# The mock scans the prompt for keywords and returns the best-matching response.
-# Real OpenAI is used instead when OPENAI_API_KEY is set in the environment.
+# ── Mock responses ────────────────────────────────────────────────────────────
 
 _MOCK_RESPONSES: dict[str, str] = {
     "expense": (
@@ -52,28 +52,48 @@ _DEFAULT_RESPONSE = (
 )
 
 
+# ── Public API ────────────────────────────────────────────────────────────────
+
+def active_backend() -> str:
+    """Returns a human-readable string identifying the active LLM backend."""
+    return f"openai / {OPENAI_MODEL}" if os.getenv("OPENAI_API_KEY") else "mock"
+
+
 def generate_response(prompt: str) -> str:
     """
-    Main entrypoint. Uses OpenAI if OPENAI_API_KEY is set, otherwise mock.
+    Route to OpenAI if OPENAI_API_KEY is set, otherwise use the mock.
+    Key is read from the environment at call time so .env reloads are respected.
     """
-    if OPENAI_API_KEY:
-        return _call_openai(prompt)
+    key = os.getenv("OPENAI_API_KEY", "")
+    if key:
+        return _call_openai(prompt, key)
     return _mock_response(prompt)
 
 
-def _call_openai(prompt: str) -> str:
+# ── Backends ──────────────────────────────────────────────────────────────────
+
+def _call_openai(prompt: str, api_key: str) -> str:
     try:
-        from openai import OpenAI  # optional dependency
-        client = OpenAI(api_key=OPENAI_API_KEY)
-        resp = client.chat.completions.create(
+        from openai import OpenAI
+        oai = OpenAI(api_key=api_key)
+        base = dict(
             model=OPENAI_MODEL,
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=512,
             temperature=0.3,
         )
+        # Newer models (gpt-4o+, o1, gpt-5 family) require max_completion_tokens.
+        # Older models (gpt-3.5-turbo, gpt-4) use max_tokens.
+        # Try the new parameter first and fall back if the model rejects it.
+        try:
+            resp = oai.chat.completions.create(**base, max_completion_tokens=512)
+        except Exception as inner:
+            if "unsupported_parameter" in str(inner):
+                resp = oai.chat.completions.create(**base, max_tokens=512)
+            else:
+                raise
         return resp.choices[0].message.content or ""
     except Exception as exc:
-        return f"LLM unavailable: {exc}"
+        return f"LLM error: {exc}"
 
 
 def _mock_response(prompt: str) -> str:

@@ -1,5 +1,8 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()  # must run before any os.getenv() call
 
 ROOT = Path(__file__).parent.parent
 

@@ -103,19 +103,20 @@ def test_multiple_injection_patterns_blocked(client):
 # ── Rate limiting ─────────────────────────────────────────────────────────────
 
 def test_rate_limit_returns_429(client):
-    # Exhaust the bucket (default capacity = 10, but we override in rate_limiter for test)
-    from app.config import RATE_LIMIT_CAPACITY
-    for i in range(RATE_LIMIT_CAPACITY):
-        client.post("/query", json={
-            "user_id": "spam_user",
-            "query": f"legitimate question number {i}",
-        })
-    # Next request should be rate-limited
+    # The unit tests already verify that N requests consume N tokens.
+    # This test covers the HTTP contract: gateway returns 429 when the
+    # rate limiter blocks. We drain the bucket directly to avoid timing
+    # issues — slow RAG inference on CPU refills tokens between real requests.
+    bucket = rate_limiter._get("spam_user")
+    rate_limiter._refill(bucket)
+    bucket.tokens = 0.0
+
     r = client.post("/query", json={
         "user_id": "spam_user",
-        "query": "one more question",
+        "query": "this request should be rate limited",
     })
     assert r.status_code == 429
+    assert "rate_limit_exceeded" in r.json().get("detail", "")
 
 
 # ── Logging endpoints ─────────────────────────────────────────────────────────
